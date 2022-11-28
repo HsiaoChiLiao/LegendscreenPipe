@@ -1,0 +1,163 @@
+---
+title: "Analysing single-cell protein intensities with LegendscreenPipe (Beta-version)"
+author: "Hsiao-Chi Liao"
+date: "Last edited `r format(Sys.time(), '%d %B %Y')`"
+header-includes:
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analysing single-cell protein intensities with LegendscreenPipe (Beta-version)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+## For data from the LegendScreen assay:
+This end-to-end toolbox carefully pre-processes the raw data in FCS format (one file per well), and further imputes the ‘missing’ exploratory markers (Legend) in the wells without measurement. The pipeline starts by performing background correction on raw intensities to remove the noise from electronic baseline restoration and fluorescence compensation by adapting the normal-exponential convolution model. Secondly, unwanted technical variation such as well effects is removed by applying the log-normal model with plate, column, and row factors. Thirdly, imputation is done by using the informative backbone markers as predictors. Lastly, cluster analysis is performed on both normalised backbone measurements and the completed dataset.
+
+## For data from the fluorescence flow cytometry (FFC) assay:
+This end-to-end toolbox carefully pre-processes the raw data in FCS format (one file per well or batch). The pipeline starts by performing background correction on raw intensities to remove the noise from electronic baseline restoration and fluorescence compensation by adapting the normal-exponential convolution model. Secondly, unwanted technical variation such as batch/well effects is removed by applying the log-normal model with batch information or plate, column, and row factors. Lastly, cluster analysis is performed on the normalised backbone measurements.
+
+## Notes:
+*For the plate-based experiments, the file names of the FCS files MUST contain the following pattern:
+<br>
+Plate information: Plate1, Plate2, ..., Plate9
+<br>
+Well information: A1, A2, ..., A12, B1, ..., H1, ..., H12
+
+*The function `pipBackbone` is designed for normalising data from the fluorescence flow cytometry (FFC) assay. The main difference between the functions `pipLegendscreen` and `pipBackbone` is that `pipBackbone` does not contain the 'exploratory' `Legend` markers, and thus does not require imputation.
+
+**COMING SOON**: 
+<br>
+Experiments from different batches...
+<br>
+The file names of the FCS files MUST contain the batch information.
+<br>
+<br>
+<br>
+
+# Four sections in this Vignette
+Section 0 (S0). Required packages 
+<br>
+Section 1 (S1). Installing `LegendscreenPipe` 
+<br>
+Section 2 (S2). Analysing the single-cell protein intensites with `LegendscreenPipe`
+<br>
+Section 3 (S3). Description of the output
+
+## S0. Loading required packages and checking if they're installed
+Along with the `LegendscreenPipe` package, we will also load the following packages required for the whole analysis.
+```{r, required packages, eval = FALSE}
+library(flowCore)
+library(Biobase)
+library(stringr)
+library(uwot)
+library(Rphenograph)
+library(igraph)
+library(ggplot2)
+library(RColorBrewer)
+library(Rfast)
+library(ggrepel)
+library(ComplexHeatmap)
+library(circlize)
+library(glmnetUtils)
+library(e1071)
+library(xgboost)
+library(foreach)
+library(doParallel)
+library(parallel)
+library(pbapply)
+library(reshape)
+library(gtools)
+```
+
+## S1. Installing `LegendscreenPipe` 
+Please install the package from GitHub.
+```{r, install the package, eval = FALSE}
+if (!requireNamespace("devtools", quietly = TRUE)){
+    install.packages("devtools")
+}
+devtools::install_github("HsiaoChiLiao/LegendscreenPipe", build_vignettes=FALSE)
+```
+
+## S2. Analysing the single-cell protein intensites with `LegendscreenPipe`
+```{r, load_package, eval = FALSE}
+library(LegendscreenPipe)
+```
+
+### `pipLegendscreen`: for data from the LegendScreen assay
+```{r, running the pipeline with pipLegendscreen, eval = FALSE}
+# running with build-in FCS files:
+pipLegendscreen(
+FCSpath="/PathToThePackage/LegendscreenPipe/data-raw/",  #must contain 'LegendscreenPipe/data-raw'
+Outpath="/OutputPath/Output/",  #the folder for saving output should be named 'Output'
+batch_key="plate",
+bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
+"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
+chans = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
+"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
+yvar="Legend", control.wells = c("P1_A01", "P2_A02", "P3_G02"), 
+bkb.upper.quntile=0.9, bkb.lower.quntile=0.1, bkb.min.quntile=0.01, 
+pe.mean.sd=3, pe.lower.quntile=0.1, pe.min.quntile=0.01,
+trans.dat="cent.lgc", 
+models.use = c("XGBoost"),
+extra_args_regression_params = list(list(nrounds = 1500, eta = 0.03)),
+cores=2L)
+
+# check the usage
+help(pipLegendscreen, package = "LegendscreenPipe")
+```
+
+### `pipBackbone`: for data from the fluorescence flow cytometry (FFC) assay
+```{r, running the pipeline with pipBackbone, eval = FALSE}
+# running with build-in FCS files:
+pipBackbone(
+FCSpath="/PathToThePackage/LegendscreenPipe/data-raw/",  #must contain 'LegendscreenPipe/data-raw'
+Outpath="/OutputPath/Output/",  #the folder for saving output should be named 'Output'
+batch_key="plate",
+bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
+"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
+bkb.upper.quntile=0.9, bkb.lower.quntile=0.1, bkb.min.quntile=0.01, 
+trans.dat="cent.lgc")
+
+# check the usage
+help(pipBackbone, package = "LegendscreenPipe")
+```
+
+All the output will be stored in the `Outpath`.
+
+
+## S3. Description of the output
+Three folders will be automatically generated in the `Output` folder.
+<br>
+<br>
+1. `intermediary`: Intermediary results will be saved in the .rds and .RData formats and will be stored here.
+<br>
+<br>
+2. `downstream`: Final results will be saved in the .rds format and will be stored here. The results include normalised backbone measurements (on both linear and log scale), the completed dataset with imputed Legend markers, UMAP coordinates derived from both normalised backbones and the completed dataset, and metadata for cells including cluster labels derived from both normalised backbones and the completed dataset.
+<br>
+<br>
+3. `graph`: Figures will be stored here, including **scatter plots** for comparing background corrected and raw intensities for each protein marker, **heatmaps** for presenting the biological and unwanted effects in the data before and after removal of unwanted variation, **boxplots** of R-sq for visualising the accuracy of imputed Legend markers, and **UMAP plots** for showing the cluster structure.
+<br>
+<br>
+<br>
+
+# THANK YOU
+Thanks for carrying out analyses with our `LegendscreenPipe` package. Please feel free to raise any issues and/or questions and send them to [Hsiao-Chi's email](hsiaochi.liao@student.unimelb.edu.au).
+
+
+## Information about the R session when this vignette was built
+```{r}
+sessionInfo()
+```
