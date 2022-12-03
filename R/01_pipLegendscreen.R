@@ -90,7 +90,7 @@ function(FCSpath,
   ###
   
   ##1.fcs to rds
-  fcs_to_rds(paths, batch_key=batch_key) 
+  fcs_to_rds(paths, batch_key=batch_key, yvar=yvar) 
   
   ##2-1.bkc bkb
   bkc_bkb(paths, bkb.v,
