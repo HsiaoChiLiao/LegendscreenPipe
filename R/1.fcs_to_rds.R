@@ -4,6 +4,7 @@
 #' 
 #' @param paths Character vector of paths to store intput, intermediary results, outputs...
 #' @param batch_key Data from plate-based experiments (batch_key="plate") or not (batch_key="batch")
+#' @param yvar The name of the well-specific marker in the FCS files (e.g., "Legend").
 #' 
 #' @author Hsiao-Chi Liao
 #' 
@@ -14,7 +15,7 @@
 #' @return Generating fcs_metadata_df.rds and fcs_rawInten_mt.rds files.
 #' 
 fcs_to_rds <-
-function(paths, batch_key=batch_key) #inpath with a set of fcs files
+function(paths, batch_key=batch_key, yvar=yvar) #inpath with a set of fcs files
   {
     # FCSpath="/Users/chelsea/Desktop/PhD/ProteinExpression/InFlow/Programming/infinity/R_CODE/72.mk_pkg/data/sample_data/"
     # RDSpath="/Users/chelsea/Desktop/PhD/ProteinExpression/InFlow/Programming/infinity/R_CODE/72.mk_pkg/data/rds/"
@@ -98,6 +99,9 @@ function(paths, batch_key=batch_key) #inpath with a set of fcs files
     ord.fcs.raw.meta.df$NO.in.all <- 1:nrow(ord.fcs.raw.mt)
     
     # tail(ord.fcs.raw.meta.df); unique(ord.fcs.raw.meta.df$Well.lab)
+    
+    # name exploratory as Legend
+    colnames(ord.fcs.raw.mt)[which(colnames(ord.fcs.raw.mt) == yvar)] <- "Legend"
     
     #out rds
     ord.fcs.raw.meta.df.out <- ord.fcs.raw.meta.df[,c(8,1,3,5,6,4,7)]

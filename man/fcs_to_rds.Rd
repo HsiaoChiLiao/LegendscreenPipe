@@ -4,12 +4,14 @@
 \alias{fcs_to_rds}
 \title{Converting FCS files to RDS files}
 \usage{
-fcs_to_rds(paths, batch_key = batch_key)
+fcs_to_rds(paths, batch_key = batch_key, yvar = yvar)
 }
 \arguments{
 \item{paths}{Character vector of paths to store intput, intermediary results, outputs...}
 
 \item{batch_key}{Data from plate-based experiments (batch_key="plate") or not (batch_key="batch")}
+
+\item{yvar}{The name of the well-specific marker in the FCS files (e.g., "Legend").}
 }
 \value{
 Generating fcs_metadata_df.rds and fcs_rawInten_mt.rds files.
