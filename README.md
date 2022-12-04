@@ -1,8 +1,8 @@
-title: "Analysing single-cell protein intensities with LegendscreenPipe (Beta-version)"
-date: "Last edited `r format(Sys.time(), '%d %B %Y')`"
-author:
-  - first_name: Hsiao-Chi
-    last_name: Liao
+---
+title: Analysing single-cell protein intensities with LegendscreenPipe (Beta-version)
+author: Hsiao-Chi Liao
+date: today
+---
 
 # Introduction
 
