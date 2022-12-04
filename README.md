@@ -1,9 +1,8 @@
----
-title: Analysing single-cell protein intensities with LegendscreenPipe (Beta-version)
-author: Hsiao-Chi Liao
-date: today
----
-
+# Analysing single-cell protein intensities with LegendscreenPipe (Beta-version)
+### Author: Hsiao-Chi Liao
+### Date: 4 Dec 2022
+<br>
+<br>
 # Introduction
 
 ## For data from the LegendScreen assay:
