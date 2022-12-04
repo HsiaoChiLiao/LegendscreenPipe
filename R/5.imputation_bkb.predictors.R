@@ -4,7 +4,7 @@
 #' 
 #' @param paths Character vector of paths to store intput, intermediary results, outputs...
 #' @param chans A vector of the names of the backbone markers (MUST match to the names in the FCS file).
-#' @param yvar The name of the well-specific marker in the FCS files (e.g., "Legend").
+#' @param yvar The name of the well-specific marker in the FCS files (has been changed to "Legend" in the first function).
 #' @param cores The number of cores used to perform parallel computation (default = 8L).
 #' @param models.use A vector of the names of the models used for imputation (an example: c("LM", "LASSO3", "SVM", "XGBoost")). The length of the vector is arbitrary.
 #' @param extra_args_regression_params A list of the lists of the parameters for running regression models.
@@ -30,7 +30,7 @@
 imputation_bkb.predictors <-
 function(paths,
                                         chans,
-                                        yvar=yvar,
+                                        yvar="Legend",
                                         cores=cores,
                                         models.use = models.use,
                                         extra_args_regression_params = extra_args_regression_params,

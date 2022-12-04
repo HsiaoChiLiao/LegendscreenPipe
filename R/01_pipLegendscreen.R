@@ -119,7 +119,7 @@ function(FCSpath,
     ##5.imputation_bkb.pred
     imputation_bkb.predictors(paths,
                chans,
-               yvar=yvar,
+               yvar="Legend",
                cores=cores,
                models.use = models.use,
                extra_args_regression_params = extra_args_regression_params,

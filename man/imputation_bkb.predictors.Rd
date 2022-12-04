@@ -7,7 +7,7 @@
 imputation_bkb.predictors(
   paths,
   chans,
-  yvar = yvar,
+  yvar = "Legend",
   cores = cores,
   models.use = models.use,
   extra_args_regression_params = extra_args_regression_params,
@@ -19,7 +19,7 @@ imputation_bkb.predictors(
 
 \item{chans}{A vector of the names of the backbone markers (MUST match to the names in the FCS file).}
 
-\item{yvar}{The name of the well-specific marker in the FCS files (e.g., "Legend").}
+\item{yvar}{The name of the well-specific marker in the FCS files (has been changed to "Legend" in the first function).}
 
 \item{cores}{The number of cores used to perform parallel computation (default = 8L).}
 
