@@ -4,16 +4,13 @@
 \alias{pipBackbone}
 \title{The toolbox for analysing single-cell protein intensity from fluorescence flow cytometry (FFC).}
 \usage{
-pipBackbone(
-  FCSpath,
-  Outpath,
-  batch_key = "plate",
-  bkb.v,
-  bkb.upper.quntile = 0.9,
-  bkb.lower.quntile = 0.1,
-  bkb.min.quntile = 0.01,
-  trans.dat = "cent.lgc"
-)
+pipBackbone(FCSpath="/PathToFCSfiles/",
+Outpath="/PathToOutputFolder/Output/",
+batch_key="plate",
+bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
+"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"),
+bkb.upper.quntile=0.9, bkb.lower.quntile=0.1, bkb.min.quntile=0.01,
+trans.dat="cent.lgc")
 }
 \arguments{
 \item{FCSpath}{Path to the input directory where input FCS files are stored (one file per well). Will look for FCS files recursively in that directory.}
@@ -37,17 +34,6 @@ Normalised backbone measurements. Cluster analysis for normalised backbones. Gra
 }
 \description{
 This function is an end-to-end toolbox for analysing the data from FFC in FCS format, including data normalisation and cluster analysis.
-}
-\examples{
-pipBackbone(FCSpath="/Users/chelsea/Desktop/PhD/ProteinExpression/InFlow/Programming/package/LegendscreenPipe/data-raw/", 
-Outpath="/Users/chelsea/Desktop/PhD/ProteinExpression/InFlow/Programming/infinity/R_CODE/72.mk_pkg/test_pkg/Output/", 
-batch_key="plate",
-bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
-"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
-bkb.upper.quntile=0.9, bkb.lower.quntile=0.1, bkb.min.quntile=0.01, 
-trans.dat="cent.lgc")
-
-
 }
 \author{
 Hsiao-Chi Liao

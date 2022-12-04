@@ -1,7 +1,8 @@
-<style>
-body {
-text-align: justify}
-</style>
+title: "Analysing single-cell protein intensities with LegendscreenPipe (Beta-version)"
+date: "Last edited `r format(Sys.time(), '%d %B %Y')`"
+author:
+  - first_name: Hsiao-Chi
+    last_name: Liao
 
 # Introduction
 
@@ -43,14 +44,13 @@ functions `pipLegendscreen` and `pipBackbone` is that `pipBackbone` does
 not contain the ‘exploratory’ `Legend` markers, and thus does not
 require imputation.
 
-**COMING SOON**: <br> Experiments from different batches… <br> The file
+**COMING SOON**: <br> Experiments (FFC) from different batches… <br> The file
 names of the FCS files MUST contain the batch information. <br> <br>
 <br>
 
 # Four sections in this Vignette
 
-Section 0 (S0). Required packages <br> Section 1 (S1). Installing
-`LegendscreenPipe` <br> Section 2 (S2). Analysing the single-cell
+Section 0 (S0). Required packages <br> Section 1 (S1). Installing `LegendscreenPipe` and downloading the sample dataset <br> Section 2 (S2). Analysing the single-cell
 protein intensites with `LegendscreenPipe` <br> Section 3 (S3).
 Description of the output
 
@@ -83,9 +83,9 @@ library(reshape)
 library(gtools)
 ```
 
-## S1. Installing `LegendscreenPipe`
+## S1. Installing `LegendscreenPipe` and downloading the sample dataset
 
-Please install the package from GitHub.
+### Please install the package from GitHub.
 
 ``` r
 if (!requireNamespace("devtools", quietly = TRUE)){
@@ -93,6 +93,11 @@ if (!requireNamespace("devtools", quietly = TRUE)){
 }
 devtools::install_github("HsiaoChiLiao/LegendscreenPipe", build_vignettes=FALSE)
 ```
+### The sample dataset is stored in the folder 'data-raw' on GitHub
+https://github.com/HsiaoChiLiao/LegendscreenPipe.git
+<br>
+This is a subset (1000 cells/well) of data downloaded from Becht et al., 2021 (DOI: 10.1126/sciadv.abg0505).
+<br>
 
 ## S2. Analysing the single-cell protein intensites with `LegendscreenPipe`
 

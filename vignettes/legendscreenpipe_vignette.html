@@ -341,7 +341,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Analysing single-cell protein intensities
 with LegendscreenPipe (Beta-version)</h1>
 <h4 class="author">Hsiao-Chi Liao</h4>
-<h4 class="date">Last edited 28 November 2022</h4>
+<h4 class="date">Last edited 04 December 2022</h4>
 
 
 
@@ -389,7 +389,7 @@ difference between the functions <code>pipLegendscreen</code> and
 <code>pipBackbone</code> is that <code>pipBackbone</code> does not
 contain the ‘exploratory’ <code>Legend</code> markers, and thus does not
 require imputation.</p>
-<p><strong>COMING SOON</strong>: <br> Experiments from different
+<p><strong>COMING SOON</strong>: <br> Experiments (FFC) from different
 batches… <br> The file names of the FCS files MUST contain the batch
 information. <br> <br> <br></p>
 </div>
@@ -397,9 +397,10 @@ information. <br> <br> <br></p>
 <div id="four-sections-in-this-vignette" class="section level1">
 <h1>Four sections in this Vignette</h1>
 <p>Section 0 (S0). Required packages <br> Section 1 (S1). Installing
-<code>LegendscreenPipe</code> <br> Section 2 (S2). Analysing the
-single-cell protein intensites with <code>LegendscreenPipe</code> <br>
-Section 3 (S3). Description of the output</p>
+<code>LegendscreenPipe</code> and downloading the sample dataset <br>
+Section 2 (S2). Analysing the single-cell protein intensities with
+<code>LegendscreenPipe</code> <br> Section 3 (S3). Description of the
+output</p>
 <div id="s0.-loading-required-packages-and-checking-if-theyre-installed" class="section level2">
 <h2>S0. Loading required packages and checking if they’re installed</h2>
 <p>Along with the <code>LegendscreenPipe</code> package, we will also
@@ -426,13 +427,22 @@ load the following packages required for the whole analysis.</p>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape)</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtools)</span></code></pre></div>
 </div>
-<div id="s1.-installing-legendscreenpipe" class="section level2">
-<h2>S1. Installing <code>LegendscreenPipe</code></h2>
-<p>Please install the package from GitHub.</p>
+<div id="s1.-installing-legendscreenpipe-and-downloading-the-sample-dataset" class="section level2">
+<h2>S1. Installing <code>LegendscreenPipe</code> and downloading the
+sample dataset</h2>
+<div id="please-install-the-package-from-github." class="section level3">
+<h3>Please install the package from GitHub.</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;HsiaoChiLiao/LegendscreenPipe&quot;</span>, <span class="at">build_vignettes=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="the-sample-dataset-is-stored-in-the-folder-data-raw-on-github" class="section level3">
+<h3>The sample dataset is stored in the folder ‘data-raw’ on GitHub</h3>
+<p><a href="https://github.com/HsiaoChiLiao/LegendscreenPipe.git" class="uri">https://github.com/HsiaoChiLiao/LegendscreenPipe.git</a>
+<br> This is a subset (1000 cells/well) of data downloaded from Becht et
+al., 2021 (DOI: 10.1126/sciadv.abg0505). <br></p>
+</div>
 </div>
 <div id="s2.-analysing-the-single-cell-protein-intensites-with-legendscreenpipe" class="section level2">
 <h2>S2. Analysing the single-cell protein intensites with
@@ -443,7 +453,7 @@ load the following packages required for the whole analysis.</p>
 assay</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># running with build-in FCS files:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pipLegendscreen</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">FCSpath=</span><span class="st">&quot;/PathToThePackage/LegendscreenPipe/data-raw/&quot;</span>,  <span class="co">#must contain &#39;LegendscreenPipe/data-raw&#39;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">FCSpath=</span><span class="st">&quot;/PathToFCSfiles/&quot;</span>,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">Outpath=</span><span class="st">&quot;/OutputPath/Output/&quot;</span>,  <span class="co">#the folder for saving output should be named &#39;Output&#39;</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">batch_key=</span><span class="st">&quot;plate&quot;</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">bkb.v =</span> <span class="fu">c</span>(<span class="st">&quot;FSC-H&quot;</span>, <span class="st">&quot;FSC-W&quot;</span>, <span class="st">&quot;SSC-H&quot;</span>, <span class="st">&quot;SSC-W&quot;</span>, <span class="st">&quot;CD69-CD301b&quot;</span>, <span class="st">&quot;MHCII&quot;</span>, <span class="st">&quot;CD4&quot;</span>, <span class="st">&quot;CD44&quot;</span>, <span class="st">&quot;CD8&quot;</span>, <span class="st">&quot;CD11c&quot;</span>, <span class="st">&quot;CD11b&quot;</span>,</span>
@@ -466,7 +476,7 @@ assay</h3>
 cytometry (FFC) assay</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># running with build-in FCS files:</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pipBackbone</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">FCSpath=</span><span class="st">&quot;/PathToThePackage/LegendscreenPipe/data-raw/&quot;</span>,  <span class="co">#must contain &#39;LegendscreenPipe/data-raw&#39;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">FCSpath=</span><span class="st">&quot;/PathToFCSfiles/&quot;</span>,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">Outpath=</span><span class="st">&quot;/OutputPath/Output/&quot;</span>,  <span class="co">#the folder for saving output should be named &#39;Output&#39;</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">batch_key=</span><span class="st">&quot;plate&quot;</span>,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">bkb.v =</span> <span class="fu">c</span>(<span class="st">&quot;FSC-H&quot;</span>, <span class="st">&quot;FSC-W&quot;</span>, <span class="st">&quot;SSC-H&quot;</span>, <span class="st">&quot;SSC-W&quot;</span>, <span class="st">&quot;CD69-CD301b&quot;</span>, <span class="st">&quot;MHCII&quot;</span>, <span class="st">&quot;CD4&quot;</span>, <span class="st">&quot;CD44&quot;</span>, <span class="st">&quot;CD8&quot;</span>, <span class="st">&quot;CD11c&quot;</span>, <span class="st">&quot;CD11b&quot;</span>,</span>

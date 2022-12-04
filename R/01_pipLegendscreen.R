@@ -27,9 +27,9 @@
 #' @export
 #' @return Normalised backbone measurements and imputed well-specific markers. Cluster analysis for both normalised backbones and the completed dataset. Graphs will be provided if set visualisation = TRUE.
 #' 
-#' @examples 
-#' pipLegendscreen(FCSpath="/Users/chelsea/Desktop/PhD/ProteinExpression/InFlow/Programming/package/LegendscreenPipe/data-raw/", 
-#' Outpath="/Users/chelsea/Desktop/PhD/ProteinExpression/InFlow/Programming/infinity/R_CODE/72.mk_pkg/test_pkg/Output/", 
+#' @usage  
+#' pipLegendscreen(FCSpath="/PathToFCSfiles/", 
+#' Outpath="/PathToOutputFolder/Output/", 
 #' batch_key="plate",
 #' bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
 #' "F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
@@ -42,8 +42,8 @@
 #' models.use = c("XGBoost"),
 #' extra_args_regression_params = list(list(nrounds = 1500, eta = 0.03)),
 #' cores=2L)
-
-
+#' 
+#' 
 pipLegendscreen <-
 function(FCSpath, 
                               Outpath,

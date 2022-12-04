@@ -4,27 +4,20 @@
 \alias{pipLegendscreen}
 \title{The toolbox for analysing single-cell protein intensity from the LEGENDScreen assay.}
 \usage{
-pipLegendscreen(
-  FCSpath,
-  Outpath,
-  batch_key = "plate",
-  bkb.v,
-  chans,
-  yvar = "Legend",
-  control.wells,
-  bkb.upper.quntile = 0.9,
-  bkb.lower.quntile = 0.1,
-  bkb.min.quntile = 0.01,
-  pe.mean.sd = 3,
-  pe.lower.quntile = 0.1,
-  pe.min.quntile = 0.01,
-  trans.dat = "cent.lgc",
-  models.use = c("LM", "LASSO3", "SVM", "XGBoost"),
-  extra_args_regression_params = list(list(degree = 1), list(nfolds = 10, degree = 3),
-    list(type = "nu-regression", cost = 8, nu = 0.5, kernel = "radial"), list(nrounds =
-    1500, eta = 0.03)),
-  cores = 4L
-)
+pipLegendscreen(FCSpath="/PathToFCSfiles/", 
+Outpath="/PathToOutputFolder/Output/", 
+batch_key="plate",
+bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
+"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
+chans = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
+"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
+yvar="Legend", control.wells = c("P1_A01", "P2_A02", "P3_G02"), 
+bkb.upper.quntile=0.9, bkb.lower.quntile=0.1, bkb.min.quntile=0.01, 
+pe.mean.sd=3, pe.lower.quntile=0.1, pe.min.quntile=0.01,
+trans.dat="cent.lgc", 
+models.use = c("XGBoost"),
+extra_args_regression_params = list(list(nrounds = 1500, eta = 0.03)),
+cores=2L)
 }
 \arguments{
 \item{FCSpath}{Path to the input directory where input FCS files are stored (one file per well). Will look for FCS files recursively in that directory.}
@@ -68,22 +61,6 @@ Normalised backbone measurements and imputed well-specific markers. Cluster anal
 }
 \description{
 This function is an end-to-end toolbox for analysing the data from the LEGENDScreen assay in FCS format, including data normalisation, imputation and cluster analysis.
-}
-\examples{
-pipLegendscreen(FCSpath="/Users/chelsea/Desktop/PhD/ProteinExpression/InFlow/Programming/package/LegendscreenPipe/data-raw/", 
-Outpath="/Users/chelsea/Desktop/PhD/ProteinExpression/InFlow/Programming/infinity/R_CODE/72.mk_pkg/test_pkg/Output/", 
-batch_key="plate",
-bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
-"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
-chans = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
-"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
-yvar="Legend", control.wells = c("P1_A01", "P2_A02", "P3_G02"), 
-bkb.upper.quntile=0.9, bkb.lower.quntile=0.1, bkb.min.quntile=0.01, 
-pe.mean.sd=3, pe.lower.quntile=0.1, pe.min.quntile=0.01,
-trans.dat="cent.lgc", 
-models.use = c("XGBoost"),
-extra_args_regression_params = list(list(nrounds = 1500, eta = 0.03)),
-cores=2L)
 }
 \author{
 Hsiao-Chi Liao
