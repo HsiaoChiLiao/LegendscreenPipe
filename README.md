@@ -2,7 +2,6 @@
 ### Author: Hsiao-Chi Liao
 ### Date: 4 Dec 2022
 <br>
-<br>
 
 # Introduction
 
