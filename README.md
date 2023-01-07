@@ -51,8 +51,8 @@ fluorescence flow cytometry (FFC) assay. The main difference between the
 functions `pipLegendscreen` and `pipBackbone` is that `pipBackbone` does
 not contain the ‘exploratory’ `Legend` markers, and thus does not
 require imputation. Users may use `pipBackbone` for normalising data from the LegendScreen assay without doing imputation.
-
 <br>
+
 **COMING SOON**: <br> Experiments (FFC) from different batches… <br> 
 Prepare `filename_meta.csv` with the following format and save the CSV file in `FCSpath`
 |  Filenam  |  Batch  |
@@ -61,6 +61,7 @@ Prepare `filename_meta.csv` with the following format and save the CSV file in `
 |070122.fcs |  Batch2 |
 |010122.fcs |  Batch3 |
 <br>
+<br><br>
 <br>
 
 # Four sections in this Vignette
