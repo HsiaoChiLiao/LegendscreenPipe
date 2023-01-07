@@ -60,6 +60,7 @@ Prepare `filename_meta.csv` with the following format and save the CSV file in `
 |090122.fcs |  Batch1 |
 |070122.fcs |  Batch2 |
 |010122.fcs |  Batch3 |
+<br>
 <br><br>
 
 # Four sections in this Vignette
