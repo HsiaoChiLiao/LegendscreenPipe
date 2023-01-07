@@ -4,17 +4,19 @@
 \alias{pipLegendscreen}
 \title{The toolbox for analysing single-cell protein intensity from the LEGENDScreen assay.}
 \usage{
-pipLegendscreen(FCSpath="/PathToFCSfiles/", 
-Outpath="/PathToOutputFolder/Output/", 
-batch_key="plate",
-bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
-"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
-chans = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
-"F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
-yvar="Legend", control.wells = c("P1_A01", "P2_A02", "P3_G02"), 
-bkb.upper.quntile=0.9, bkb.lower.quntile=0.1, bkb.min.quntile=0.01, 
+pipLegendscreen(FCSpath="/PathToFCSfiles/",
+Outpath="/PathToOutputFolder/Output/",
+file_meta="auto",
+bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44",
+          "CD8", "CD11c", "CD11b", "F480", "Ly6C", "Lineage", "CD45a488",
+          "CD24", "CD103"),
+chans = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44",
+          "CD8", "CD11c", "CD11b", "F480", "Ly6C", "Lineage", "CD45a488",
+          "CD24", "CD103"),
+yvar="Legend", control.wells = c("P1_A01", "P2_A02", "P3_G02"),
+bkb.upper.quntile=0.9, bkb.lower.quntile=0.1, bkb.min.quntile=0.01,
 pe.mean.sd=3, pe.lower.quntile=0.1, pe.min.quntile=0.01,
-trans.dat="cent.lgc", 
+trans.dat="cent.lgc",
 models.use = c("XGBoost"),
 extra_args_regression_params = list(list(nrounds = 1500, eta = 0.03)),
 cores=2L)
@@ -24,7 +26,7 @@ cores=2L)
 
 \item{Outpath}{Path to the output directory where intermediate results and final results will be stored}
 
-\item{batch_key}{Data from plate-based experiments (default: batch_key="plate") or not (batch_key="batch")}
+\item{file_meta}{If the file names of the FCS files are in the specified format, set file_meta="auto"; otherwise set file_meta="usr" and provide "filename_meta.csv" in FCSpath.}
 
 \item{bkb.v}{A vector of the names of the backbone markers (MUST match to the names in the FCS file).}
 
