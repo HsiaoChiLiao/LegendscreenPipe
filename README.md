@@ -60,9 +60,7 @@ Prepare `filename_meta.csv` with the following format and save the CSV file in `
 |090122.fcs |  Batch1 |
 |070122.fcs |  Batch2 |
 |010122.fcs |  Batch3 |
-<br>
 <br><br>
-<br>
 
 # Four sections in this Vignette
 
@@ -128,7 +126,7 @@ library(LegendscreenPipe)
 pipLegendscreen(
 FCSpath="/PathToThePackage/LegendscreenPipe/data-raw/",  #must contain 'LegendscreenPipe/data-raw'
 Outpath="/OutputPath/Output/",  #the folder for saving output should be named 'Output'
-batch_key="plate",
+file_meta="auto",
 bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
 "F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
 chans = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
@@ -152,7 +150,8 @@ help(pipLegendscreen, package = "LegendscreenPipe")
 pipBackbone(
 FCSpath="/PathToThePackage/LegendscreenPipe/data-raw/",  #must contain 'LegendscreenPipe/data-raw'
 Outpath="/OutputPath/Output/",  #the folder for saving output should be named 'Output'
-batch_key="plate",
+file_meta="auto",
+plate_based = TRUE,
 bkb.v = c("FSC-H", "FSC-W", "SSC-H", "SSC-W", "CD69-CD301b", "MHCII", "CD4", "CD44", "CD8", "CD11c", "CD11b",
 "F480", "Ly6C", "Lineage", "CD45a488", "CD24", "CD103"), 
 bkb.upper.quntile=0.9, bkb.lower.quntile=0.1, bkb.min.quntile=0.01, 
