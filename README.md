@@ -1,6 +1,6 @@
 # Analysing single-cell protein intensities with LegendscreenPipe (Beta-version)
 ### Author: Hsiao-Chi Liao
-### Date: 4 Dec 2022
+### Date: 7 Jan 2022
 <br>
 
 # Introduction
@@ -37,14 +37,14 @@ backbone measurements.
 contain the following specified format (if set file_meta == "auto"): <br> Plate information: Plate1, Plate2,
 …, Plate9 <br> Well information: A1, A2, …, A12, B1, …, H1, …, H12
 
-\*For file_meta == "usr", prepare `filename_meta.csv` with the following format and save the CSV file in FCSpath 
+\*For `file_meta == "usr"`, prepare `filename_meta.csv` with the following format and save the CSV file in `FCSpath` 
 |  Filenam  |  Plate  |  Well  |  Column  |  Row  |  Well.lab  |
 |:---------:|:-------:|:------:|:--------:|:-----:|:----------:|
 |p1_a12.fcs |  Plate1 |   A12  |  Col.12  | Row.01|   P1_A12   |
 |p2_d08.fcs |  Plate2 |   D08  |  Col.08  | Row.04|   P2_D08   |
 |p3_g1.fcs  |  Plate3 |   G01  |  Col.01  | Row.07|   P3_G01   |
 <br>
-Note that the "Filenam" column refers to the file names of the FCS files in the FCSpath.
+Note that the "Filenam" column refers to the file names of the FCS files in the `FCSpath`.
 
 \*The function `pipBackbone` is designed for normalising data from the
 fluorescence flow cytometry (FFC) assay. The main difference between the
@@ -52,15 +52,15 @@ functions `pipLegendscreen` and `pipBackbone` is that `pipBackbone` does
 not contain the ‘exploratory’ `Legend` markers, and thus does not
 require imputation. Users may use `pipBackbone` for normalising data from the LegendScreen assay without doing imputation.
 
+<br>
 **COMING SOON**: <br> Experiments (FFC) from different batches… <br> 
-Prepare `filename_meta.csv` with the following format and save the CSV file in FCSpath 
+Prepare `filename_meta.csv` with the following format and save the CSV file in `FCSpath`
 |  Filenam  |  Batch  |
 |:---------:|:-------:|
 |090122.fcs |  Batch1 |
 |070122.fcs |  Batch2 |
 |010122.fcs |  Batch3 |
 <br>
-<br> <br>
 <br>
 
 # Four sections in this Vignette
