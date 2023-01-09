@@ -37,7 +37,7 @@ backbone measurements.
 contain the following specified format (if set file_meta == "auto"): <br> Plate information: Plate1, Plate2,
 …, Plate9 <br> Well information: A1, A2, …, A12, B1, …, H1, …, H12
 
-\*For `file_meta == "usr"`, prepare `filename_meta.csv` in the following format and save the CSV file in `FCSpath` 
+\*For `file_meta = "usr"`, prepare `filename_meta.csv` in the following format and save the CSV file in `FCSpath` 
 |  Filenam  |  Plate  |  Well  |  Column  |  Row  |  Well.lab  |
 |:---------:|:-------:|:------:|:--------:|:-----:|:----------:|
 |p1_a12.fcs |  Plate1 |   A12  |  Col.12  | Row.01|   P1_A12   |
