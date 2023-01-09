@@ -25,7 +25,7 @@
 #' @author Hsiao-Chi Liao
 #'
 #' @export
-#' @return Normalised backbone measurements and imputed well-specific markers. Cluster analysis for both normalised backbones and the completed dataset. Graphs will be provided if set visualisation = TRUE.
+#' @return Normalised backbone measurements and imputed well-specific markers. Cluster analysis for both normalised backbones and the completed dataset. Graphs will be provided.
 #'
 #' @usage
 #' pipLegendscreen(FCSpath="/PathToFCSfiles/",

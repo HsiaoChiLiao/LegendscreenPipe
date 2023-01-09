@@ -15,7 +15,7 @@
 #' @author Hsiao-Chi Liao
 #'
 #' @export
-#' @return Normalised backbone measurements. Cluster analysis for normalised backbones. Graphs will be provided if set visualisation = TRUE.
+#' @return Normalised backbone measurements. Cluster analysis for normalised backbones. Graphs will be provided.
 #'
 #' @usage
 #' pipBackbone(FCSpath="/PathToFCSfiles/",
